@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mzungu Connect | Premium International Connections</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600;700&display=swap');
+        body { font-family: 'Poppins', sans-serif; background-color: #f8fafc; }
+        h1, h2, .brand-font { font-family: 'Playfair Display', serif; }
+        
+        .profile-circle { 
+            width: 140px; height: 140px; 
+            border-radius: 50% !important; 
+            object-fit: cover; 
+            border: 4px solid #fff; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            background: #cbd5e1;
+        }
+
+        .premium-bg { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); }
+        .status-segment { height: 3px; background: rgba(255,255,255,0.2); border-radius: 2px; flex: 1; overflow: hidden; }
+        .status-progress { height: 100%; width: 0%; background: #fbbf24; }
+        
+        .modal { display: none; position: fixed; z-index: 100; inset: 0; background: rgba(15, 23, 42, 0.9); align-items: center; justify-content: center; padding: 15px; backdrop-filter: blur(8px); }
+        .modal.active { display: flex; }
+        
+        .tab-btn.active { color: #0f172a; border-bottom: 3px solid #fbbf24; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .v-badge {
+            background: #eff6ff; color: #1d4ed8; padding: 3px 10px;
+            border-radius: 20px; font-size: 9px; font-weight: 800;
+            display: inline-flex; align-items: center; gap: 4px; border: 1px solid #dbeafe;
+        }
+
+        #notification {
+            position: fixed; bottom: 20px; left: 20px; background: white;
+            padding: 15px 20px; border-radius: 18px; box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+            display: flex; align-items: center; gap: 12px; z-index: 1000;
+            transform: translateY(200%); transition: transform 0.5s ease-out;
+            border-left: 4px solid #fbbf24;
+        }
+        #notification.show { transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+    <!-- Trust Header -->
+    <div class="bg-slate-900 py-2.5 text-[10px] md:text-xs text-slate-400 font-bold tracking-[0.2em] text-center px-4 uppercase border-b border-white/5">
+        <span class="mx-4"><i class="fas fa-id-badge text-yellow-500 mr-1.5"></i> Global ID Verification</span>
+        <span class="mx-4"><i class="fas fa-video text-yellow-500 mr-1.5"></i> Video Screened</span>
+        <span class="mx-4"><i class="fas fa-lock text-yellow-500 mr-1.5"></i> Discreet Placement</span>
+    </div>
+
+    <header class="premium-bg text-white py-20 px-6 text-center shadow-2xl">
+        <div class="max-w-4xl mx-auto">
+            <div class="w-20 h-20 bg-white/10 rounded-3xl flex items-center justify-center mx-auto mb-8 border border-white/10 shadow-xl">
+                <i class="fas fa-crown text-4xl text-yellow-400"></i>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold mb-4 tracking-tight">Mzungu Connect</h1>
+            <p class="text-xl opacity-80 font-light italic mb-10">"Premium International Dating for Discerning Kenyan Ladies."</p>
+            
+            <div class="inline-flex items-center gap-3 bg-white/5 rounded-full px-6 py-2 border border-white/10">
+                <span class="flex h-2.5 w-2.5 relative">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+                </span>
+                <span class="text-sm font-semibold tracking-wide uppercase"><span id="live-counter">127</span> Gentlemen Active Now</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Verification Info -->
+    <section class="bg-white py-14 px-4 border-b">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-slate-800 mb-2">Our Security Protocol</h2>
+            <p class="text-slate-500 mb-12">Every gentleman undergoes a rigorous background check before listing.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100">
+                    <i class="fas fa-passport text-3xl text-blue-600 mb-4"></i>
+                    <h3 class="font-bold mb-2">Passport Validation</h3>
+                    <p class="text-sm text-slate-600">Cross-referenced with home country government records to ensure true identity.</p>
+                </div>
+                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100">
+                    <i class="fas fa-video text-3xl text-blue-600 mb-4"></i>
+                    <h3 class="font-bold mb-2">Compulsory Video Call</h3>
+                    <p class="text-sm text-slate-600">A live 10-minute screening with our admin team to verify intent and character.</p>
+                </div>
+                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100">
+                    <i class="fas fa-briefcase text-3xl text-blue-600 mb-4"></i>
+                    <h3 class="font-bold mb-2">Economic Verification</h3>
+                    <p class="text-sm text-slate-600">Verification of business status or professional standing to ensure serious partners.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 20 Profile Grid -->
+    <main class="max-w-7xl mx-auto py-16 px-4">
+        <div id="profile-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"></div>
+    </main>
+
+    <!-- Testimonials -->
+    <section class="bg-slate-50 py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-center text-slate-900 mb-12">Kenyan Success Stories</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="testimonial-grid"></div>
+        </div>
+    </section>
+
+    <footer class="bg-white py-20 border-t">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div class="bg-slate-900 p-12 rounded-[40px] shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-8 opacity-10">
+                    <i class="fas fa-globe-europe text-9xl text-white"></i>
+                </div>
+                <h4 class="text-2xl font-bold text-yellow-400 mb-4 tracking-widest">INTERNATIONAL MEMBERSHIP</h4>
+                <p class="text-slate-300 mb-8 leading-relaxed text-lg">Are you a gentleman from the US, UK, Europe, or beyond looking for a sincere partner in Kenya? Join our elite directory. Send your passport copy, professional bio, and 4 photos to:<br>
+                <strong class="text-white block mt-4 text-2xl font-bold">join@mzunguconnect.com</strong></p>
+                <div class="flex justify-center gap-6 text-[10px] text-slate-500 font-bold uppercase tracking-[0.2em]">
+                    <span><i class="fas fa-shield-alt text-yellow-500 mr-1"></i> ID Background Check</span>
+                    <span><i class="fas fa-camera text-yellow-500 mr-1"></i> Mandatory Screening</span>
+                </div>
+            </div>
+            <p class="mt-12 text-slate-400 text-xs tracking-[0.4em]">&copy; 2026 MZUNGU CONNECT GLOBAL</p>
+        </div>
+    </footer>
+
+    <!-- Notification Toast -->
+    <div id="notification">
+        <div class="bg-yellow-50 text-yellow-600 w-10 h-10 rounded-full flex items-center justify-center">
+            <i class="fas fa-heart"></i>
+        </div>
+        <div>
+            <p id="notif-text" class="text-sm font-bold text-slate-800"></p>
+            <p class="text-[9px] text-slate-400 uppercase font-bold tracking-widest">Connection Live</p>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="profileModal" class="modal">
+        <div class="bg-white w-full max-w-lg rounded-[35px] overflow-hidden flex flex-col max-h-[95vh] relative shadow-2xl">
+            <button onclick="closeModal()" class="absolute top-6 right-6 z-50 text-slate-400 hover:text-slate-900 bg-white/80 w-10 h-10 rounded-full flex items-center justify-center shadow-md transition-all">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="flex border-b bg-slate-50">
+                <button onclick="showTab('bio')" id="btn-bio" class="tab-btn active flex-1 py-5 font-bold uppercase text-[10px] tracking-widest">Identity & Bio</button>
+                <button onclick="showTab('photos')" id="btn-photos" class="tab-btn flex-1 py-5 font-bold uppercase text-[10px] tracking-widest">Private Gallery</button>
+            </div>
+
+            <div class="flex-1 overflow-y-auto">
+                <div id="tab-bio" class="tab-content active p-10">
+                    <div class="flex flex-col items-center mb-8">
+                        <div class="relative">
+                            <img id="modalProfileImg" src="" class="profile-circle mb-4">
+                            <div class="absolute bottom-6 right-2 bg-blue-600 text-white w-6 h-6 rounded-full border-4 border-white flex items-center justify-center text-[8px]">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <h2 id="modalName" class="text-3xl font-bold text-slate-800"></h2>
+                        <div id="modalAgeLoc" class="text-slate-500 font-medium mt-1 mb-4"></div>
+                        <div class="v-badge">
+                            <i class="fas fa-shield-check"></i> PASSPORT VERIFIED
+                        </div>
+                    </div>
+                    <div class="bg-slate-50 p-8 rounded-[30px] border border-slate-100 leading-relaxed italic text-slate-600 text-center text-lg shadow-inner" id="modalBioText"></div>
+                </div>
+
+                <div id="tab-photos" class="tab-content h-[450px] bg-slate-900 relative">
+                    <div class="absolute top-4 inset-x-6 flex gap-1.5 z-20" id="status-bars"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <button onclick="prevPic()" class="absolute left-4 z-30 text-white/30 hover:text-white p-4"><i class="fas fa-chevron-left text-2xl"></i></button>
+                        <div id="photoContainer" class="w-full h-full flex items-center justify-center overflow-hidden"></div>
+                        <button onclick="nextPic()" class="absolute right-4 z-30 text-white/30 hover:text-white p-4"><i class="fas fa-chevron-right text-2xl"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-8 bg-white border-t border-slate-50">
+                <div class="flex items-center justify-between mb-6 text-[10px] font-bold text-slate-400 tracking-widest">
+                    <span><i class="fas fa-lock mr-1 text-yellow-500"></i> SECURE ENCRYPTION</span>
+                    <span>SERVICE FEE: KSH 500</span>
+                </div>
+                <a href="https://wa.me/254712345678" class="flex items-center justify-center gap-3 w-full bg-slate-900 text-white py-5 rounded-[20px] font-bold shadow-xl hover:bg-slate-800 transition active:scale-[0.98]">
+                    <i class="fas fa-unlock-alt"></i> Unlock Direct Contact
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const profiles = [
+            { name: "John Sterling", age: 54, loc: "Texas, USA", job: "Oil Logistics", bio: "A true Southern gentleman with a passion for wildlife. Divorced for 4 years, I value loyalty and deep conversation. I travel to Nairobi frequently for work and leisure. I am very family-oriented; I warmly welcome a lady with or without kids—as a father myself, I understand that family is a blessing." },
+            { name: "Graham Whittaker", age: 48, loc: "London, UK", job: "Property Dev", bio: "Elegant, sophisticated, and adventurous. I’ve built a successful career in London and now I’m looking for someone to share my success with. I appreciate the warmth of Kenyan hospitality. Whether you have children or not doesn't matter; it’s your heart and ambition that I am drawn to." },
+            { name: "Hans Müller", age: 51, loc: "Berlin, Germany", job: "Engineer", bio: "Honest, stable, and quite traditional. I enjoy the quiet life and planning for a beautiful retirement in Diani. I am looking for a partner who is sincere. I have a lot of respect for mothers; if you have kids, they are part of the package and will be treated with kindness." },
+            { name: "Capt. Mark Davis", age: 59, loc: "Florida, USA", job: "Retired Navy", bio: "A retired Marine with a strong sense of discipline and a soft heart for the people I love. I live between Florida and my beach house in Kenya. I’m looking for a loyal queen. Whether you have children or you are alone, I just want a woman who is real and ready to settle." },
+            { name: "Dr. Robert Finch", age: 46, loc: "Dublin, Ireland", job: "Medical Surgeon", bio: "Highly educated but down to earth. My work is intense, so I value my peace at home. I visit Kenya for medical missions and fell in love with the culture. I am very open-minded—I welcome a partner with or without kids. Let’s build a legacy of love together." },
+            { name: "Anders Larsson", age: 43, loc: "Stockholm, SE", job: "Tech Founder", bio: "Dynamic and creative. I love the outdoors—from skiing in Sweden to safaris in the Mara. I’m looking for a beautiful, active Kenyan lady to explore the world with. I am very supportive of family life; if you have kids, I am happy to welcome them into our adventures." },
+            { name: "Liam O'Shea", age: 39, loc: "Sydney, AU", job: "Architect", bio: "I’m an Irishman living in sunny Australia. I appreciate structure but love spontaneity. I am searching for a serious partner who is ready to relocate or build a home. I have no problem with a lady having kids—I believe a home is livelier with children around." },
+            { name: "Steven Miller", age: 55, loc: "California, USA", job: "Business Owner", bio: "A widower with a gentle soul. I’ve reached a point where I want to enjoy the fruits of my labor with someone special. I love travel and fine dining. I have a big family back home and I am very happy to accept a lady who already has her own little ones." },
+            { name: "Björn Nilsson", age: 41, loc: "Oslo, Norway", job: "Marine Biologist", bio: "Simple, calm, and deeply connected to nature. I spend a lot of time by the sea. I’m looking for a natural Kenyan beauty who is tired of games. I am a very patient man; whether you are a mother or not, I only care about the connection we share." },
+            { name: "David Henderson", age: 57, loc: "Ontario, Canada", job: "Consultant", bio: "Professional, protective, and generous. I want a lady who can appreciate a comfortable life in Canada or warm winters in Kenya. I believe a woman’s past or her children only add to her strength. I welcome a lady with or without kids with open arms." },
+            { name: "Paolo Ricci", age: 45, loc: "Rome, Italy", job: "Fashion Exec", bio: "I have a deep appreciation for style, culture, and Kenyan beauty. I travel to Nairobi for business and want a lady who can be my anchor. I am very family-centric. If you have children, I see that as a beautiful part of who you are." },
+            { name: "Michael Van Wyk", age: 52, loc: "Amsterdam, NL", job: "Investor", bio: "A global citizen who loves to explore hidden gems. I am looking for a lady who is as adventurous as I am. I value honesty above all. I am perfectly happy to date a lady with kids; I believe in being a positive influence in a family." },
+            { name: "Ryan Fitzgerald", age: 38, loc: "Boston, USA", job: "Finance Manager", bio: "Success came early for me, and now I want to find the missing piece—love. I am attracted to the resilience and beauty of Kenyan women. Kids or no kids, it doesn't matter to me. I am looking for a partner I can trust and grow with." },
+            { name: "Klaus Weber", age: 62, loc: "Zurich, CH", job: "Retired Banker", bio: "I am a man of my word. I’ve retired from the fast life and now want to travel the world in peace. I am looking for a lady to be my companion. I am very generous and I have no issues if you have children; they will be well-cared for." },
+            { name: "James Thorne", age: 49, loc: "Manchester, UK", job: "Safety Officer", bio: "A grounded man with a great sense of humor. I love football, good food, and great company. I want a fresh start with a lady who is down to earth. I am very family-oriented and I’m happy to match with a lady whether she has kids or not." },
+            { name: "Chris Pienaar", age: 44, loc: "Cape Town, SA", job: "Wine Merchant", bio: "I enjoy the finer things—good wine, great sunsets, and meaningful relationships. I am looking for a soulmate in East Africa. I am very comfortable with a lady who has children. Family is the foundation of happiness, after all." },
+            { name: "Olivier Dubois", age: 47, loc: "Paris, France", job: "Chef / Owner", bio: "I live life with passion and flavor. I’m looking for a Kenyan muse to share my life and my kitchen with. I believe love has no borders and no rules. If you have kids, they are welcome in my home; I love a big, happy family." },
+            { name: "Scott Peterson", age: 53, loc: "Seattle, USA", job: "Software Dev", bio: "A tech professional with a heart for the simple life. I am a single father, so I know the joys and challenges of parenting. I am looking for a lady who is kind and patient. I definitely accept and welcome a lady with her own children." },
+            { name: "Lars Jensen", age: 40, loc: "Copenhagen, DK", job: "Renewables", bio: "I am dedicated to making the world a better place. I’m looking for a natural, authentic lady who loves nature as much as I do. Whether you have kids or not is not a factor for me; your character and our chemistry are what truly matter." },
+            { name: "Thomas Burke", age: 56, loc: "Chicago, USA", job: "Attorney", bio: "Highly professional, articulate, and looking for a serious connection. I am tired of the casual dating scene. I want a lady who is ready for a real commitment. I have total respect for mothers; if you have kids, I am more than happy to meet you." }
+        ];
+
+        const bgColors = ['#0f172a', '#1e293b', '#334155', '#475569'];
+        let activeProfile = null;
+        let activePic = 1;
+        let progressInterval;
+
+        function init() {
+            const grid = document.getElementById('profile-grid');
+            const testGrid = document.getElementById('testimonial-grid');
+            
+            profiles.forEach((p, i) => {
+                const fName = p.name.split(' ')[0].toLowerCase();
+                const isOnline = Math.random() > 0.4;
+                grid.innerHTML += `
+                <div class="bg-white rounded-[30px] p-8 shadow-sm border border-slate-100 flex flex-col items-center text-center group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                    <div class="flex items-center gap-2 mb-6">
+                        <span class="w-2 h-2 rounded-full ${isOnline ? 'bg-green-500' : 'bg-slate-300'}"></span>
+                        <span class="text-[9px] font-bold text-slate-400 tracking-widest">${isOnline ? 'ONLINE NOW' : 'VERIFIED'}</span>
+                    </div>
+                    <div class="relative mb-6">
+                        <img src="${fName}_p.jpg" onerror="this.src='https://ui-avatars.com/api/?name=${p.name}&background=0f172a&color=fff&size=200'" class="profile-circle">
+                        <div class="absolute bottom-2 right-2 bg-blue-600 text-white p-1.5 rounded-full border-4 border-white shadow-lg text-[8px]">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-800">${p.name}</h3>
+                    <p class="text-[10px] text-slate-400 mb-4 tracking-widest uppercase font-bold">${p.loc}</p>
+                    <div class="text-blue-700 font-bold text-xs bg-blue-50 px-4 py-1.5 rounded-full mb-8">${p.job}</div>
+                    <button onclick="openProfileByIndex(${i})" class="w-full bg-slate-900 text-white py-4 rounded-2xl font-bold text-xs shadow-md hover:bg-slate-800 transition">View Full Dossier</button>
+                </div>`;
+            });
+
+            const quotes = [
+                "I met Hans here 2 years ago. He is a gentleman. We now live in Berlin with my two children. Admin asante sana!",
+                "Verified profiles are real. I matched with Mark from Florida, he visited me in Mombasa and we are now engaged.",
+                "The video call screening is the best part. No scammers. I found a great partner from London. Totally discreet.",
+                "Married to John from Texas for a year now. This site changed my life and my family's life. Be patient, he is there.",
+                "Thank you Mzungu Connect. I found a partner who loves me and respects my background. We are very happy.",
+                "Best platform for serious ladies. I met a doctor from Ireland who is the most kind person I've ever known."
+            ];
+            for (let i = 0; i < 6; i++) {
+                testGrid.innerHTML += `<div class="bg-white p-8 rounded-[30px] italic text-slate-600 border border-slate-100 text-sm shadow-sm">"${quotes[i]}"<p class="mt-4 font-bold text-slate-900 not-italic text-[10px] uppercase tracking-widest border-t pt-4 border-slate-50">- Verified Member</p></div>`;
+            }
+
+            setInterval(showNotification, 8000);
+            setInterval(() => {
+                document.getElementById('live-counter').innerText = Math.floor(Math.random() * (150 - 110) + 110);
+            }, 5000);
+        }
+
+        function showNotification() {
+            const names = ["Stacy", "Faith", "Brenda", "Purity", "Naomi"];
+            const locs = ["Nairobi", "Mombasa", "Eldoret", "Kisumu"];
+            const countries = ["USA", "UK", "Germany", "Norway", "Canada"];
+            const lady = names[Math.floor(Math.random() * names.length)];
+            const country = countries[Math.floor(Math.random() * countries.length)];
+            const loc = locs[Math.floor(Math.random() * locs.length)];
+            const notif = document.getElementById('notification');
+            document.getElementById('notif-text').innerText = `${lady} in ${loc} matched with ${country}`;
+            notif.classList.add('show');
+            setTimeout(() => notif.classList.remove('show'), 4000);
+        }
+
+        function openProfileByIndex(index) {
+            const p = profiles[index];
+            activeProfile = { ...p, fName: p.name.split(' ')[0].toLowerCase() };
+            activePic = 1;
+            document.getElementById('modalName').innerText = p.name;
+            document.getElementById('modalAgeLoc').innerText = `${p.age} Yrs • ${p.loc} • ${p.job}`;
+            document.getElementById('modalBioText').innerText = p.bio;
+            document.getElementById('modalProfileImg').src = `${activeProfile.fName}_p.jpg`;
+            document.getElementById('modalProfileImg').onerror = function() { 
+                this.src = `https://ui-avatars.com/api/?name=${p.name}&background=0f172a&color=fff&size=200`; 
+            };
+            document.getElementById('profileModal').classList.add('active');
+            showTab('bio');
+        }
+
+        function showTab(tab) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            if(tab === 'bio') {
+                document.getElementById('tab-bio').classList.add('active');
+                document.getElementById('btn-bio').classList.add('active');
+                clearInterval(progressInterval);
+            } else {
+                document.getElementById('tab-photos').classList.add('active');
+                document.getElementById('btn-photos').classList.add('active');
+                startStatusLogic();
+            }
+        }
+
+        function startStatusLogic() {
+            renderStatusBars();
+            updatePhoto();
+            runProgress();
+        }
+
+        function renderStatusBars() {
+            const container = document.getElementById('status-bars');
+            container.innerHTML = '';
+            for(let i=1; i<=4; i++) {
+                container.innerHTML += `<div class="status-segment"><div id="bar-${i}" class="status-progress"></div></div>`;
+            }
+        }
+
+        function runProgress() {
+            clearInterval(progressInterval);
+            for(let i=1; i<=4; i++) {
+                const b = document.getElementById(`bar-${i}`);
+                if(b) {
+                    b.style.transition = 'none';
+                    b.style.width = i < activePic ? '100%' : '0%';
+                }
+            }
+            setTimeout(() => {
+                const currentBar = document.getElementById(`bar-${activePic}`);
+                if(currentBar) {
+                    currentBar.style.transition = 'width 10s linear';
+                    currentBar.style.width = '100%';
+                }
+            }, 50);
+            progressInterval = setInterval(nextPic, 10000);
+        }
+
+        function updatePhoto() {
+            const container = document.getElementById('photoContainer');
+            const imgUrl = `${activeProfile.fName}_pic${activePic}.jpg`;
+            const randomColor = bgColors[activePic - 1];
+            container.innerHTML = `<img src="${imgUrl}" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML='<div style=\\'background:${randomColor}\\' class=\\'w-full h-full flex flex-col items-center justify-center text-white p-12 text-center\\'><i class=\\'fas fa-lock text-4xl mb-4 opacity-30\\'></i><p class=\\'font-bold text-sm uppercase tracking-widest\\'>Protected Gallery ${activePic}<br><span class=\\'text-[10px] opacity-70\\'>Unlocked after verification</span></p></div>'">`;
+        }
+
+        function nextPic() {
+            activePic = activePic >= 4 ? 1 : activePic + 1;
+            updatePhoto();
+            runProgress();
+        }
+
+        function prevPic() {
+            activePic = activePic <= 1 ? 4 : activePic - 1;
+            updatePhoto();
+            runProgress();
+        }
+
+        function closeModal() {
+            document.getElementById('profileModal').classList.remove('active');
+            clearInterval(progressInterval);
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>
